@@ -1,0 +1,158 @@
+@fa-font-path:        "../webfonts";
+@import "font-awesome/fontawesome.scss";
+@import "font-awesome/fa-solid.scss";
+
+$font-stack:    Helvetica, sans-serif;
+$background-color: #363636;
+$secondary-color: #883104;
+$divider-text-color: #F1E9C5;
+$danger-color: #721c24;
+$success-color: #155724;
+$label-background: #e4e4e4;
+
+body {
+  font-family: $font-stack;
+  background-color: $background-color;
+  font-size: 14px;
+  padding: 50px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+input{
+  font-family: $font-stack;
+  height: 20px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border: none;
+
+  &.ng-invalid{
+    .reservation-form.ng-invalid.ng-submitted &{
+      border: 1px solid red;
+    }
+    &.ng-touched{
+      border: 1px solid red;
+    }
+  }
+}
+
+.validation-error-block{
+  padding-left: 85px;
+  padding-top: 3px;
+
+  & span{
+    color: red;
+  }
+}
+
+.flex-outer{
+  list-style-type: none;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+
+  & li:not(:last-child){
+    margin-bottom: 20px;
+
+  }
+
+  & li > .input-group{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    & input, & textarea{
+      flex: 1 0 150px;
+      padding: 15px;
+      outline: none;
+    }
+
+    & textarea{
+      border-radius: 3px;
+      font-family: $font-stack;
+    }
+
+    & .label-group{
+        flex: 0 0 65px;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: $label-background;
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        padding: 17px 5px 17px 15px;
+        margin-right: 0px;
+        color: #333;
+    }
+  }
+
+  & li input[type='submit'] {
+    margin-left: auto;
+    padding: 8px 16px;
+    border: none;
+    background: $secondary-color;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 50px;
+  }
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before, &:after{
+    background: #43423E;
+    height: 2px;
+    flex: 1;
+    content: '';
+  }
+
+  & span {
+    margin: 0 15px;
+    text-transform: uppercase;
+    font-size: 16px;
+    color: $divider-text-color;
+
+    & i {
+      margin-right: 5px;
+      color: $secondary-color;
+    }
+  }
+}
+
+.add-msg, .add-msg:hover, .add-msg:focus{
+  color: $divider-text-color;
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.request-error{
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: $danger-color;
+  border: 1px solid;
+  border-radius: 3px;
+  padding-left: 15px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.request-success{
+  color: $success-color;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  border: 1px solid;
+  border-radius: 3px;
+  padding-left: 15px;
+  margin-top: 10px;
+  font-size: 16px;
+}

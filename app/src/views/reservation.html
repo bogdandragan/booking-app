@@ -1,0 +1,106 @@
+<div class="container">
+    <form name="form" class="reservation-form" ng-submit="ctrl.createReservation(form)" novalidate>
+        <ul class="flex-outer">
+            <li class="separator"><span><i class="fas fa-calendar-alt"></i> Book a table</span></li>
+            <li>
+                <div class="input-group">
+                    <div class="label-group">
+                        <span><i class="fas fa-calendar-alt"></i> Date</span>
+                    </div>
+                    <input type="date" ng-model="ctrl.reservationForm.date" ng-model-options="{timezone:'UTC'}"
+                           name="date" min="2018-01-01" max="2099-12-31" placeholder="yyyy-MM-dd" required/>
+                </div>
+                <div class="validation-error-block" ng-show="form.$submitted || form.date.$touched">
+                    <span ng-show="form.date.$error.required">Date field is required.</span>
+                    <span ng-show="form.date.$error.date">Date field is not valid. Date format is yyyy-MM-dd</span>
+                    <span ng-show="form.date.$error.min">Date must be from 2018-01-01 to 2099-12-31</span>
+                    <span ng-show="form.date.$error.max">Date must be from 2018-01-01 to 2099-12-31</span>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <div class="label-group">
+                        <span><i class="fas fa-clock"></i> Time</span>
+                    </div>
+                    <input type="time" ng-model="ctrl.reservationForm.time" ng-model-options="{timezone:'UTC'}"
+                           name="time" placeholder="HH:mm:ss" required/>
+                </div>
+                <div class="validation-error-block" ng-show="form.$submitted || form.time.$touched">
+                    <span ng-show="form.time.$error.required">Time field is required.</span>
+                    <span ng-show="form.time.$error.time">Time field is not valid. Time format is HH:mm:ss</span>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <div class="label-group">
+                        <span><i class="fas fa-user"></i> Party</span>
+                    </div>
+                    <input type="number" min="1" max="100" ng-model="ctrl.reservationForm.party" name="party" required/>
+                </div>
+                <div class="validation-error-block" ng-show="form.$submitted || form.party.$touched">
+                    <span ng-show="form.party.$error.required">Party field is required.</span>
+                    <span ng-show="form.party.$error.number">Party field should be number.</span>
+                    <span ng-show="form.party.$error.min">Party field should contain number from 1 to 100.</span>
+                    <span ng-show="form.party.$error.max">Party field should contain number from 1 to 100.</span>
+                </div>
+            </li>
+            <li class="separator"><span><i class="fas fa-user"></i> Contact details</span></li>
+            <li>
+                <div class="input-group">
+                    <div class="label-group">
+                        <span><i class="fas fa-pencil-alt"></i> Name</span>
+                    </div>
+                    <input type="text" ng-model="ctrl.reservationForm.name" name="name" required/>
+                </div>
+                <div class="validation-error-block" ng-show="form.$submitted || form.name.$touched">
+                    <span ng-show="form.name.$error.required">Name field is required.</span>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <div class="label-group">
+                        <span><i class="fas fa-envelope"></i> Email</span>
+                    </div>
+                    <input type="email" ng-model="ctrl.reservationForm.email" name="email" required email/>
+                </div>
+                <div class="validation-error-block" ng-show="form.$submitted || form.email.$touched">
+                    <span ng-show="form.email.$error.required">Email field is required.</span>
+                    <span ng-show="form.email.$error.email">Enter valid email.</span>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <div class="label-group">
+                        <span><i class="fas fa-mobile-alt"></i> Phone</span>
+                    </div>
+                    <input type="text" ng-model="ctrl.reservationForm.phone" name="phone"
+                           ng-pattern="/^[\+]?[1]{1}[(]?[0-9]{3}[)]?[0-9]{3}[-]?[0-9]{4}$/"
+                           placeholder="+1(514)458-4444" required/>
+                </div>
+                <div class="validation-error-block" ng-show="form.$submitted || form.phone.$touched">
+                    <span ng-show="form.phone.$error.required">Phone field is required.</span>
+                    <span ng-show="form.phone.$error.pattern">Phone field is not valid. Phone format is +1(514)458-4444</span>
+                </div>
+            </li>
+            <li>
+                <a href="" class="add-msg" ng-click="ctrl.showMsgField = true"><i class="fas fa-plus-circle"></i> Add
+                    message</a>
+                <div class="input-group">
+                    <textarea rows="3" ng-show="ctrl.showMsgField" ng-model="ctrl.reservationForm.message"
+                              name="message"></textarea>
+                </div>
+            </li>
+            <li>
+                <div class="input-group">
+                    <input type="submit" id="submit" value="Request booking">
+                </div>
+                <div ng-if="ctrl.requestError" class="request-error">
+                    <p>Error!!! {{ctrl.requestResult.status}} : {{ctrl.requestResult.statusText}}</p>
+                </div>
+                <div ng-if="ctrl.requestSuccess" class="request-success">
+                    <p>Booking successfully created!</p>
+                </div>
+            </li>
+        </ul>
+    </form>
+</div>
